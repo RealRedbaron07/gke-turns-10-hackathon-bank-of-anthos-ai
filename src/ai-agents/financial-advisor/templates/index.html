@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GKE Turns 10 Hackathon - AI Financial Advisor Submission</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); 
+            color: white; 
+            margin: 0; 
+            padding: 20px; 
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; margin: 30px 0; }
+        .card { 
+            background: rgba(255,255,255,0.08); 
+            padding: 25px; 
+            margin: 20px 0; 
+            border-radius: 12px; 
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .demo-button { 
+            background: linear-gradient(45deg, #4CAF50, #45a049); 
+            color: white; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin: 8px; 
+            transition: transform 0.2s;
+        }
+        .demo-button:hover { transform: translateY(-2px); }
+        .result { 
+            background: rgba(0,0,0,0.2); 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 15px 0; 
+            font-family: 'Courier New', monospace; 
+            border-left: 4px solid #4CAF50;
+        }
+        .confidence { 
+            font-size: 20px; 
+            font-weight: bold; 
+            color: #4CAF50; 
+        }
+        .compliance { 
+            background: rgba(76, 175, 80, 0.1); 
+            border-left: 4px solid #4CAF50; 
+        }
+        h1 { color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        h2 { color: #e8f4fd; }
+        h3 { color: #fff; margin-bottom: 15px; }
+        ul li { margin: 8px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 GKE Turns 10 Hackathon Submission</h1>
+            <h2>🏦 Bank of Anthos + Gemini AI Financial Advisor</h2>
+            <p>🤖 Enhanced Microservice Application with Agentic AI Capabilities</p>
+        </div>
+        
+        <div class="card compliance">
+            <h3>✅ Hackathon Rules Compliance</h3>
+            <ul>
+                <li>✅ <strong>Base Application:</strong> Bank of Anthos (unmodified)</li>
+                <li>✅ <strong>Platform:</strong> Google Kubernetes Engine (GKE) ready</li>
+                <li>✅ <strong>AI Integration:</strong> Google Gemini AI models</li>
+                <li>✅ <strong>Agentic AI:</strong> New microservice component</li>
+                <li>✅ <strong>API Integration:</strong> Calls existing APIs without core modifications</li>
+                <li>✅ <strong>Original Work:</strong> Created during contest period</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h3>💎 Live AI Financial Advisor Demo</h3>
+            <p>Test the intelligent financial analysis capabilities:</p>
+            <button class="demo-button" onclick="analyzeClient('individual-user')">Individual User</button>
+            <button class="demo-button" onclick="analyzeClient('business-account')">Business Account</button>
+            <button class="demo-button" onclick="analyzeClient('investment-portfolio')">Investment Portfolio</button>
+            <div id="results"></div>
+        </div>
+        
+        <div class="card">
+            <h3>🔧 Technical Implementation</h3>
+            <ul>
+                <li><strong>Google Kubernetes Engine:</strong> Container orchestration platform</li>
+                <li><strong>Google Gemini 1.5 Pro:</strong> AI model for financial analysis</li>
+                <li><strong>Python Flask:</strong> Microservice framework</li>
+                <li><strong>Docker:</strong> Containerization for GKE deployment</li>
+                <li><strong>RESTful APIs:</strong> Clean integration with Bank of Anthos</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function analyzeClient(clientId) {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>🔍 Analyzing ' + clientId.replace('-', ' ') + '...</p>';
+            
+            try {
+                const response = await fetch('/analyze/' + clientId);
+                const data = await response.json();
+                
+                const confidence = (data.confidence_score * 100).toFixed(1);
+                results.innerHTML = `
+                    <div class="result">
+                        <h4>📊 AI Financial Analysis Results</h4>
+                        <p><strong>Client:</strong> ${clientId.replace('-', ' ')}</p>
+                        <p><span class="confidence">🎯 AI Confidence Score: ${confidence}%</span></p>
+                        <p><strong>💡 Gemini AI Insight:</strong> ${data.gemini_insight}</p>
+                        <p><strong>📈 Risk Assessment:</strong> ${data.risk_assessment}</p>
+                        <p><strong>📊 Transactions Analyzed:</strong> ${data.transactions_analyzed}</p>
+                    </div>
+                `;
+            } catch (error) {
+                results.innerHTML = '<div class="result"><p>❌ Error: ' + error.message + '</p></div>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-financial-advisor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-financial-advisor
+  template:
+    metadata:
+      labels:
+        app: ai-financial-advisor
+    spec:
+      containers:
+      - name: ai-financial-advisor
+        image: gcr.io/PROJECT_ID/ai-financial-advisor:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-financial-advisor
+spec:
+  selector:
+    app: ai-financial-advisor
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
