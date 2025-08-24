@@ -4,7 +4,7 @@ import random
 
 app = Flask(__name__)
 
-class GeminiFinancialAdvisor:
+class GemiFlowAdvisor:
     def __init__(self):
         self.ai_insights = [
             "Based on ML analysis of your transaction patterns, consider automated savings of 15% monthly.",
@@ -31,7 +31,7 @@ class GeminiFinancialAdvisor:
             "status": "success"
         }
 
-advisor = GeminiFinancialAdvisor()
+advisor = GemiFlowAdvisor()
 
 @app.route('/')
 def home():
